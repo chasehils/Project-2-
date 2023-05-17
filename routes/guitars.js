@@ -22,9 +22,10 @@ router.get('/guitars', function(req, res, next) {
 });
 
 // Add a review to a specific guitar
-router.post('.guitars/:id/review', function(req, res, next) {
-  const { id } = req.paramsl
-  const { comment, stars } =req.body;
+router.post('/guitars/:id/review', function(req, res, next) {
+const id = req.params.id;
+const comment = req.body.comment;
+const stars = req.body.stars
   // route handler for adding a review to a specific guitar uses .then
   // to chain multiple promise-based operations together
 
