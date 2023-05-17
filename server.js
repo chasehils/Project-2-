@@ -1,3 +1,17 @@
+const mongoose = require('mongoose')
+const connectionString = 'mongodb://localhost:27017/project_2_db';
+
+mongoose.connect(connectionString, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+ 
+});
+const db = mongoose.connection;
+db.on('error', console.error.bind(console, 'MongoDB conection error:'));
+db.once('open', () => {
+  console.log('Connected to MongoDB');
+});
+
 require('dotenv').config();
 const createError = require('http-errors');
 const express = require('express');

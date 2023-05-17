@@ -1,15 +1,40 @@
 const mongoose = require('mongoose')
 
 const guitarSchema = new mongoose.Schema({
-  name: {
-    // type will be a string
+  brand: {
     type: String,
-    // this will be required in order to make this document 
-    required: true
+    required: true,
   },
-  user: {
+  model: {
+    type: String,
+    required: true,
+  },
+  year: {
+    type: Number,
+    required: true,
+  },
+  price: {
+    type: Number,
+    required: true,
+  },
+  //guitar type
+  type: {
+    type: String,
+    enum: ['acoustic, electric, bass'],
+    required: true,
+  },
+  // this allows for 6 string or 12 string type of guitar
+  strings: {
+    type: Number,
+    required: true,
+  },
+  users: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'user'
-  }
+    ref: 'User',
+  },
   
-},{})
+},
+  {}
+);
+
+module.exports = mongoose.model('Guitar', guitarSchema);

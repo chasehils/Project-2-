@@ -14,12 +14,12 @@ router.get('/login', function(req, res) {
 // create router
 router.post('/users', usersCtrl.create);
 // read router
-router.post('/:id', usersCtrl.show);
+router.get('/:id', usersCtrl.show);
 // update router
 router.put('/:id', usersCtrl.update);
 // delete router
-router.post('/:id', usersCtrl.deleteUser);
+router.delete('/:id', usersCtrl.deleteUser);
 //login router
-router.post('login', usersCtrl.login);
+router.post('/login', usersCtrl.login);
 
 module.exports = router;
