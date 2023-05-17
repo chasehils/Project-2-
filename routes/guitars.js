@@ -6,11 +6,11 @@ const Guitar = require('../models/guitars');
 // use then/catch to hand the promises reutrned by mongoose queries
 
 
-// route to Display all guitars
-// route handler for displaying all guitars uses
+
+// route handler for displaying all guitars, 
 router.get('/guitars', function(req, res, next) {
   Guitar.find()
-  // .then to handle the success case where we 
+  // .then to handle the success case,
   .then(function(guitars) {
       // render the 'guitars.ejs' view with guitars data
       res.render('guitars', { guitars });
