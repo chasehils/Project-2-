@@ -1,8 +1,24 @@
 <!-- navigation links-->
+<!-- adding a conditional (logic) to show
+differnt navigation options, depending on
+the users authentication status -->
+
 <nav>
   <ul>
     <li><a href="/">Home</a></li>
     <li><a href="/guitars">Guitars</a></li>
     <li><a href="/users">Users</a></li>
+    <!--this below checks to see if the current user is undefined or falsy,
+    if so show login and sign up. If currentUser is defined and truthy,
+    display 'Profile', 'Upload Guitar' and ' Logout' -->
+    <% if (typeof currentUser === 'undefined' || !currentUser) { %>
+      <li><a href="/login">Login</a></li>
+      <li><a href="/signup">Sign Up</a></li>
+    <% } else { %>]
+      <li><a href="/profile">Profile</a></li>
+      <li><a href="/upload"></a>Upload Guitar</li>
+      <li><a href="/logout"></a>Logout</li>
+    <% } %>
+
   </ul>
 </nav>

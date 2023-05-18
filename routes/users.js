@@ -11,6 +11,14 @@ router.get('/login', function(req, res) {
   res.render('login', { title: 'Login'});
 });
 
+// link the sign up page 
+// using the /signup path to render the 'signup.ejs'
+// view file 
+router.get('/signup', function(req, res) {
+  res.render('signup', { title: 'Sign Up'});
+});
+
+
 // create router
 router.post('/users', usersCtrl.create);
 // read router
@@ -21,5 +29,7 @@ router.put('/:id', usersCtrl.update);
 router.delete('/:id', usersCtrl.deleteUser);
 //login router
 router.post('/login', usersCtrl.login);
+// User Profile router
+router.get('/profile', usersCtrl.getProfile);
 
 module.exports = router;

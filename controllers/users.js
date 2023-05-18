@@ -1,14 +1,36 @@
 const User = require('../models/users')
+// bcrypt - Blowfish crypt - used for library hashing passwords
+// bcrypt securely hashes the user's password before storing
+// it in the database - add extra layer of security by ensuring 
+// the passwords are not stored in plain text and are not easily 
+// reverisble even if the database is compromised. 
+const bcrypt = require('bcrypt');
+
 
 // CREATE user
 function create(req, res, next) {
   const { firstName, lastName, email, password } = req.body;
-  const newUser = new User({ firstName, lastName, email, password });
-  newUser.save()
-  .then((user) => {
-    res.status(201).json({ user });
-  })
-  .catch(next);
+  //hash pasword
+  bcrypt.hash(passwprd, 10, function(err, hashedPassword) {
+    if(err) {
+      return next(err);
+    }
+        // create a new user with hashed p/w
+        const newUser = new User({
+          firstName,
+          lastName,
+          email,
+          password: hashedPassword
+        });
+        newUser.save()
+        .then((user) => {
+          res.status(201).json({ user });
+        })
+        .catch(next);
+  });
+
+
+  
 }
 
 // READ (get all users)
@@ -61,6 +83,12 @@ function login(req, res, next) {
 
 }
 
+function getProfile(req, res) {
+  const currentUser = req.user;
+  res.render('profile', { currentUser });
+}
+
+
 
 
 
@@ -71,5 +99,6 @@ create,
 show,
 update,
 deleteUser,
-login
+login,
+getProfile,
 };
