@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const usersCtrl = require('../controllers/users');
 
+
 /* GET users listing. */
 router.get('/', function(req, res, next) {
   res.send('respond with a resource');
@@ -16,6 +17,11 @@ router.get('/login', function(req, res) {
 // view file 
 router.get('/signup', function(req, res) {
   res.render('signup', { title: 'Sign Up'});
+});
+
+//register route
+router.post('/register', function(req, res, next) {
+  usersCtrl.register(req, res, next);
 });
 
 

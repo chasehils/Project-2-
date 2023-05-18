@@ -6,6 +6,21 @@ const User = require('../models/users')
 // reverisble even if the database is compromised. 
 const bcrypt = require('bcrypt');
 
+// register user funciton
+function register(req, res, next){
+  const { email, password } = req.body;
+  //check to see if email exists in db
+    User.findOne({ email })
+      .then((existingUser) => {
+        if (existingUser) {
+          return res.status(400).json({ message: 'Email is already registered'});
+        }
+        // create a new user with hashed p/w
+        const newUser = new User({ message: 'User registered'});
+      })
+      .catch(next);
+
+}
 
 // CREATE user
 function create(req, res, next) {
@@ -75,12 +90,9 @@ function deleteUser(req, res, next) {
 function login(req, res, next) {
   // get email/password from the request
   const { email, password } = req.body;
-
-  // login logic here, (eg vaildate credentials)
-  
+  // login logic here, (eg vaildate credentials)  
   // redirect user to guitars page after login
   res.redirect('/guitars');
-
 }
 
 function getProfile(req, res) {
@@ -94,7 +106,10 @@ function getProfile(req, res) {
 
 
 
+
+
 module.exports ={
+register,
 create,
 show,
 update,
