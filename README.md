@@ -19,6 +19,15 @@ I want only logged in users to be able to add a review and leave a comment on th
 
 As a user I want to be able to take an image link of guitar and have the image display on the the page. 
 
+
+Technologies Used
+- Mongoose
+- Javascript
+- Express
+- google OAuth
+- HTML
+- CSS
+
 Pseudocode 
 
       1. Define required variables
