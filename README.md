@@ -19,3 +19,33 @@ I want only logged in users to be able to add a review and leave a comment on th
 
 As a user I want to be able to take an image link of guitar and have the image display on the the page. 
 
+Pseudocode 
+
+      1. Define required variables
+        - guitar image to be generated
+        - make, model, price, and year of guitar
+        - ability to create a new guitar post
+        - ability to update the guitar post
+        - ability to delete the guitar post
+        - add/delete a review for a specific guitar
+
+      2. Upon landing the app
+        - the user will login to the website in order to use it's abilities 
+        - once the user has been verified by google oAuth, the user will be able to perform 
+          various tasks.
+        -
+
+      3. Handle a variety of user interactions
+         - uploading images to the database from a URL, then displaying that image from the database
+         - allow for users to add details of Make, Model, Price, and Year of the guitar
+         - allow for a user to leave a review for a particular guitar
+         - allow for a user to leave a 0-5 star rating
+         - allow for the user to delete their post if they decide to
+
+Next steps:
+ - Add a guitar pedals section to display how creative people can be with their pedal combinations 
+ - Add a guitar amp section to allow users to display, rate and comment their setup
+ - Add a second form of authentication for a user by storing an email and password in the database
+ - Add the ability for the user to customize their username
+ - Allow for the user to upload a profile picture 
+
