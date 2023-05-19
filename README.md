@@ -11,9 +11,9 @@ As a user, I want to be able to log in to Guitar Fanatics.
 
 Once logged in I want to be able to upload pictures of my favorite guitars. 
 
-I want to be able to able to see the make, model, price, and year of the guitar. 
+I want to see the make, model, price, and year of the guitar. 
 
-I want to be able to add a review section and a 0-5 star rating. 
+I want to add a review section and a 0-5 star rating. 
 
 I want only logged in users to be able to add a review and leave a comment on their favorite guitar. 
 
