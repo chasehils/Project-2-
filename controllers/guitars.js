@@ -1,34 +1,45 @@
 const Guitar = require('../models/guitars');
+const { validateImageLink } = require('./validation');
 
+console.log('////// something hit ')
 // CREATE - add guitar
 function createGuitar(req, res, next) {
-  const { brand, model, year, price } = req.body;
-  const newGuitar = new Guitar({
+  const { brand, model, year, price, imageLink } = req.body;
+
+  const isValidImageLink = validateImageLink(imageLink);
+    if (!isValidImageLink) {
+      return res.status(400).json({ message: 'Invalid image link' });
+    }
+  const newGuitar = new guitar ({
     brand,
     model,
     year,
-    price
-  });
+    price,
+    imageLink,
+  }); 
 
   newGuitar
     .save()
     .then((guitar) => {
-      res.status(201).json({ guitar });
+      console.log('new guitar saved', guitar)
+      res.status(201).json({ guitar, imageLink });
     })
     .catch(next);
 }
-
+console.log('/////this is createGuitar that is hit')
 // READ - get all guitars
 function getAllGuitars(req, res, next) {
-  Guitar.find({ user: req.user._id })
-        .then(guitar => {
-            res.render('guitars', {
-                guitar,
-                title: 'All Guitars'
-            })
-        })
-
-    .catch(next);
+ if (!req.user) {
+  return res.status(401).json({ message: 'Unauthorized' });
+ }
+ Guitar.find({ user: req.user._id })
+  .then((guitars) => {
+    res.render('guitars', {
+      guitars,
+      title: 'All Guitars'
+    });
+  })
+  .catch(next);
 }
 
 // READ - get a specific guitar
@@ -44,7 +55,7 @@ function getGuitarById(req, res, next) {
     })
     .catch(next);
 }
-
+console.log('/////this is getGuitarByID that is hit')
 // UPDATE - update a guitar
 function updateGuitar(req, res, next) {
   const guitarId = req.params.id;
@@ -63,7 +74,7 @@ function updateGuitar(req, res, next) {
     })
     .catch(next);
 }
-
+console.log('/////this is updateGuitar that is hit')
 // DELETE - delete a guitar
 function deleteGuitar(req, res, next) {
   const guitarId = req.params.id;
@@ -77,7 +88,7 @@ function deleteGuitar(req, res, next) {
     })
     .catch(next);
 }
-
+console.log('/////this is deleteGuitarthat is hit')
 function addReview(req, res, next) {
   const guitarId = req.params.id;
   const { comment, stars } = req.body;
@@ -102,6 +113,9 @@ function addReview(req, res, next) {
     })
     .catch(next);
 }
+console.log('/////this is addreview that is hit')
+
+
 
 module.exports = {
   createGuitar,
