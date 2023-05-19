@@ -20,7 +20,7 @@ passport.use(
           email: profile.emails[0].value,
           avatar: profile.photos[0].value,
         })
-        returncb(null, user)
+        return cb(null, user)
       } catch (err) {
         return cb(err)
       }
@@ -30,4 +30,10 @@ passport.use(
 
 passport.serializeUser(function (user, cb) {
     cb(null, user._id)
+});
+
+passport.deserializeUser(function (userId, cb) {
+	User.findById(userId)
+		.then((userDoc) => cb(null, userDoc))
+		.catch((error) => cb(error))
 })

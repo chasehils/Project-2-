@@ -1,23 +1,13 @@
-const mongoose = require('mongoose')
-const connectionString = 'mongodb://localhost:27017/project_2_db';
-
-mongoose.connect(connectionString, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
- 
-});
-const db = mongoose.connection;
-db.on('error', console.error.bind(console, 'MongoDB conection error:'));
-db.once('open', () => {
-  console.log('Connected to MongoDB');
-});
-
 require('dotenv').config();
+
 const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+
+const session = require('express-session');
+const passport = require('passport')
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
@@ -26,7 +16,9 @@ const reviewsRouter = require('./routes/reviews');
 
 const app = express();
 
-// view engine setup
+require('./config/database')
+require('./config/passport')
+
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
@@ -34,10 +26,28 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(
+	session({
+		secret: process.env.SECRET,
+		resave: false,
+		saveUninitialized: true,
+	})
+)
+app.use(passport.initialize())
+app.use(passport.session())
+
+app.use(function (req, res, next) {
+	res.locals.user = req.user
+
+	next()
+})
+
+app.use(express.static(path.join(__dirname, 'public')));
+app.use('/guitars', guitarsRouter);
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -56,3 +66,6 @@ app.use(function(err, req, res, next) {
 });
 
 module.exports = app;
+
+
+

@@ -20,10 +20,14 @@ function createGuitar(req, res, next) {
 
 // READ - get all guitars
 function getAllGuitars(req, res, next) {
-  Guitar.find()
-    .then((guitars) => {
-      res.json({ guitars });
-    })
+  Guitar.find({ user: req.user._id })
+        .then(guitar => {
+            res.render('guitars', {
+                guitar,
+                title: 'All Guitars'
+            })
+        })
+
     .catch(next);
 }
 

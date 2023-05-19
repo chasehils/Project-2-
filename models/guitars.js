@@ -28,7 +28,7 @@ const guitarSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
-  users: {
+  user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
   },

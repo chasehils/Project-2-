@@ -1,7 +1,16 @@
 const express = require('express');
 const router = express.Router();
+const passport = require('passport');
 const usersCtrl = require('../controllers/users');
 
+// google oauth authentication
+router.get('/auth/google', passport.authenticate('google', 
+{ scope: ['profile', 'email']}));
+//google oauth cb route
+router.get('/auth/google/callback', passport.authenticate('google', 
+{ failureRedirect: '/login' }), (req, res) => {
+  res.redirect('/guitars');
+});
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {

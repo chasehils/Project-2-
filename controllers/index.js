@@ -7,14 +7,6 @@ const usersCtrl = require('./users');
 const reviewsCtrl = require('./reviews');
 
 
-
-
-
-
-
-
-
-
 module.exports = {
   guitarsCtrl,
   usersCtrl,
