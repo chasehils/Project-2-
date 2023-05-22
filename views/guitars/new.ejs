@@ -1,0 +1,11 @@
+<%- include('../partials/header')  %> 
+<h1>Add New Guitar</h1>
+<form id="addGuitarForm" action="/guitars" method="POST">
+  <input type="text" name="year" placeholder="=Enter Year">
+  <input type="text" name="model" placeholder="=Enter model">
+  <input type="text" name="brand" placeholder="Enter Brand">
+  <input type="text" name="price" placeholder="Enter Price">
+  <button type="submit" id="addGuitarBtn">Add Guitar</button>
+</form>
+
+<%- include('../partials/footer')  %> 

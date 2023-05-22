@@ -1,0 +1,16 @@
+<%- include('../partials/header') %>
+
+<!-- guitar picture button-->
+<div>
+  <% guitars.forEach((guitar) => { %>
+    <div>
+      <h2><%= guitar.brand %> <%= guitar.model %></h2>
+      <p>Year: <%= guitar.year %></p>
+      <p>Price: <%= guitar.price %></p>
+      <a href="/guitars/<%= guitar._id %>">Details</a>
+    </div>
+  <% }) %>
+</div>
+
+
+<%- include('../partials/footer') %>

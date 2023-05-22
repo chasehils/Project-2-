@@ -3,14 +3,16 @@ const router = express.Router();
 // const Guitar = require('../models/guitars');
 const guitarsCtrl = require('../controllers/guitars');
 
-
-
-router.post('/', guitarsCtrl.createGuitar);
+router.get('/', guitarsCtrl.index);
+router.get('/new', guitarsCtrl.newGuitar);
+router.post('/', guitarsCtrl.create);
 console.log('///post////')
+router.get('/:id', guitarsCtrl.show)
 
-router.get('/', guitarsCtrl.getAllGuitars);
+
 console.log('guitar appppppppppp')
-router.post('/:id/review', guitarsCtrl.addReview);
+
+// router.post('/:id/review', guitarsCtrl.addReview);
 // Route handler for displaying all guitars
 // router.get('/guitars', guitarsCtrl.getAllGuitars);
  

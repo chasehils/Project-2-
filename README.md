@@ -20,6 +20,7 @@ I want only logged in users to be able to add a review and leave a comment on th
 As a user I want to be able to take an image link of guitar and have the image display on the the page. 
 
 
+<<<<<<< HEAD
 Technologies Used
 - Mongoose
 - Javascript
@@ -57,4 +58,19 @@ Next steps:
  - Add a second form of authentication for a user by storing an email and password in the database
  - Add the ability for the user to customize their username
  - Allow for the user to upload a profile picture 
+=======
+Technologies used:
+-Mongoose
+-Javascript
+-Express
+-Node
+
+
+
+Next Steps:
+
+Allow for the user to create a profile and customer their user name. 
+
+Allow for another form of authentication by allowing the user to store their email and password within the database and use bcrypt
+>>>>>>> 0f53d9e (added show page, got items to display)
 

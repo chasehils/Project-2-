@@ -1,5 +1,27 @@
 const mongoose = require('mongoose')
 
+const reviewSchema = new mongoose.Schema({
+  content: {
+    type: String,
+    required: true
+  },
+  rating: {
+    type: Number,
+    min: 1,
+    max: 5,
+    default: 5
+  },
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+    
+  },
+  userName: String,
+  userAvatar: String
+}, {
+  timestamps: true
+});
+
 const guitarSchema = new mongoose.Schema({
     brand: {
       type: String,
@@ -17,13 +39,10 @@ const guitarSchema = new mongoose.Schema({
       type: Number,
       required: true,
     },
-    imageLink: {
-      type: String,
-      required: true,
-    },
+    reviews: [reviewSchema] 
   },
   { timestamps: true }
 );
-const Guitar = mongoose.model('Guitar', guitarSchema);
 
-module.exports = Guitar;
+
+module.exports = mongoose.model('Guitar', guitarSchema);
